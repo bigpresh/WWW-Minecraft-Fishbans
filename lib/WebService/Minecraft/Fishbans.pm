@@ -87,7 +87,8 @@ sub lookup_user {
     my $result = JSON::from_json($response->decoded_content)
         or die "Failed to parse Fishbans response";
     if (!$result->{success}) {
-        die "Fishbans API response indicated failure";
+        die "Fishbans API response indicated failure - response: "
+            . $response->decoded_content;
     }
 
     my @return;
